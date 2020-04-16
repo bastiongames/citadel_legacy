@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\junkme.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Types.h" />
+    <ClInclude Include="..\..\Middleware\Middleware.h">
+      <Filter>Middleware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chrono.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Middleware">
+      <UniqueIdentifier>{c5fecba7-00e0-41d4-8835-2751c5e89a9e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

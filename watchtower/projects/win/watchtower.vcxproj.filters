@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\Device.h" />
+    <ClInclude Include="..\..\Shader.h" />
+    <ClInclude Include="..\..\VertexBuffer.h" />
+    <ClInclude Include="..\..\Pipeline.h" />
+    <ClInclude Include="..\..\dx12\vertexbuffer.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dx12\Pipeline.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RenderTarget.h" />
+    <ClInclude Include="..\..\dx12\RenderTarget.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dx12\d3dx12.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dx12\Device.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dx12\Shader.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Shader.cpp" />
+    <ClCompile Include="..\..\VertexBuffer.cpp" />
+    <ClCompile Include="..\..\Pipeline.cpp" />
+    <ClCompile Include="..\..\RenderTarget.cpp" />
+    <ClCompile Include="..\..\dx12\RenderTarget.dx12.cpp">
+      <Filter>DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dx12\Device.dx12.cpp">
+      <Filter>DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Device.cpp" />
+    <ClCompile Include="..\..\dx12\Shader.dx12.cpp">
+      <Filter>DX12</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DX12">
+      <UniqueIdentifier>{0581e0b1-42b7-45f3-8e8a-4800776cc5cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
