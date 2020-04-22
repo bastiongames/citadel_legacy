@@ -5,6 +5,8 @@ void Citadel::Castle::Game::Setup(handle systemData) {
 	this->device = Citadel::Watchtower::Device(systemData);
 	this->impl = systemData;
 
+	this->device.Wait();
+
 	//Game level setup...	
 	this->OnSetup();
 }
@@ -19,8 +21,9 @@ void Citadel::Castle::Game::Update() {
 }
 
 void Citadel::Castle::Game::Render() {
+	this->device.BeginFrame();
+
 	this->OnRender();
 
-	this->device.Present();
 	this->device.FinishFrame();
 }

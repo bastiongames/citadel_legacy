@@ -15,6 +15,8 @@ namespace Citadel::Watchtower::DX12 {
 		ComPtr<ID3D12PipelineState> pipelineState;
 		CD3DX12_VIEWPORT viewport;
 		CD3DX12_RECT scissorRect;
+
+		ComPtr<ID3D12RootSignature> signature;
 	};
 }
 

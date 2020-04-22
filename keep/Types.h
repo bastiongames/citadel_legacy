@@ -71,5 +71,12 @@ namespace Citadel::Keep {
 		real b;
 		real a;
 	};
+
+	struct uv {
+		uv(real u, real v) : u{ u }, v{ v } { }
+
+		real u;
+		real v;
+	};
 }
 #endif

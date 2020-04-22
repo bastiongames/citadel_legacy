@@ -22,6 +22,9 @@
     <ClCompile Include="..\..\src\citadel.win.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\abacus\projects\win\abacus.vcxproj">
+      <Project>{9058954a-b585-4065-8c43-dda506461ae0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\castle\projects\win\castle.vcxproj">
       <Project>{051e94c5-b50d-4bbf-810e-de8b2a51d970}</Project>
     </ProjectReference>

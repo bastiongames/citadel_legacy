@@ -5,14 +5,20 @@
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
 
-#include "keep/Types.h"
-using Citadel::Keep::UPtr;
+#include "../RenderTarget.h"
 
 namespace Citadel::Watchtower::DX12 {
+	#define RENDER_TARGET_FRAME_COUNT 2
+
+	struct RenderTargetFrameData {
+		ComPtr<ID3D12CommandAllocator> allocator;
+		ComPtr<ID3D12Resource> target;
+	};
+
 	struct RenderTargetData {
 		ComPtr<ID3D12DescriptorHeap> heap;
 		UINT size;
-		ComPtr<ID3D12Resource> renderTargets[2];
+		RenderTargetFrameData frames[RENDER_TARGET_FRAME_COUNT];
 	};
 }
 

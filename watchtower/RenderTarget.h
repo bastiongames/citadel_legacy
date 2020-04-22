@@ -8,7 +8,7 @@ using Citadel::Keep::handle;
 namespace Citadel::Watchtower {
 	class RenderTarget {
 	public:
-		RenderTarget(Citadel::Keep::handle impl = nullptr);
+		RenderTarget(handle impl = nullptr);
 		RenderTarget(const RenderTarget& other);
 		RenderTarget(RenderTarget&& other) noexcept;
 		~RenderTarget() noexcept;
@@ -17,8 +17,6 @@ namespace Citadel::Watchtower {
 		RenderTarget& operator=(RenderTarget&& other) noexcept;
 
 		handle Get() { return impl; }
-
-		handle GetFrame(u32 frameIndex);
 
 	private:
 		handle impl;

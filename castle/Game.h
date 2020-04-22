@@ -7,6 +7,8 @@
 namespace Citadel::Castle {
 	class Game {
 	public:
+		virtual ~Game() = default;
+
 		void Setup(handle systemData);
 		void Shutdown();
 

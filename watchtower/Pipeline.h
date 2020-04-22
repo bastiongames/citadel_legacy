@@ -19,12 +19,7 @@ namespace Citadel::Watchtower {
 		Pipeline& operator=(const Pipeline& other);
 		Pipeline& operator=(Pipeline&& other) noexcept;
 
-		void Reset();
-
 		handle Get() { return impl; }
-
-		Pipeline& Draw(VertexBuffer buffer);
-		Pipeline& Finish();
 		
 	private:
 		handle impl;

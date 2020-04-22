@@ -24,15 +24,16 @@
     <ClInclude Include="..\..\dx12\Shader.h">
       <Filter>DX12</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\dx12\Texture.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shader.cpp" />
     <ClCompile Include="..\..\VertexBuffer.cpp" />
     <ClCompile Include="..\..\Pipeline.cpp" />
     <ClCompile Include="..\..\RenderTarget.cpp" />
-    <ClCompile Include="..\..\dx12\RenderTarget.dx12.cpp">
-      <Filter>DX12</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\dx12\Device.dx12.cpp">
       <Filter>DX12</Filter>
     </ClCompile>
@@ -40,6 +41,7 @@
     <ClCompile Include="..\..\dx12\Shader.dx12.cpp">
       <Filter>DX12</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DX12">
