@@ -3,17 +3,22 @@
 
 #include "keep/Types.h"
 
+#include "watchtower/context/Context2D.h"
+#include "watchtower/context/Context3D.h"
+
 #include "watchtower/Shader.h"
 #include "watchtower/Pipeline.h"
 #include "watchtower/VertexBuffer.h"
 #include "watchtower/Texture.h"
 #include "watchtower/RenderTarget.h"
+#include "watchtower/Camera.h"
 
 using Citadel::Keep::u64;
 using Citadel::Keep::u32;
 using Citadel::Keep::handle;
 
 namespace Citadel::Watchtower {
+
 	class Device
 	{
 	public:
@@ -26,22 +31,20 @@ namespace Citadel::Watchtower {
 		Device& operator=(const Device& other);
 		Device& operator=(Device&& other) noexcept;
 
+		Context2D CreateContext2D();
+		Context3D CreateContext3D();
+
+
 		Device& BeginFrame();
 
 		Pipeline CreatePipeline(VertexShader& vshader, PixelShader& pshader);
-		Device& UsingPipeline(Pipeline& pipeline);
-		
 		VertexBuffer CreateVertexBuffer(void* data, u32 size, u32 stride);
-		Device& DrawTriangleList(VertexBuffer& buffer);
-		
 		Texture CreateTexture(handle data, u32 width, u32 height, u32 pixelSize);
-		Device& MapTexture(Texture& texture);
-
 		RenderTarget CreateRenderTarget();
-		Device& RenderTo(RenderTarget& target);
 
 		void Present(RenderTarget& target);
-		void FinishFrame();
+		void Present(Context& context);
+		u32 FinishFrame();
 		void Wait();
 
 	private:

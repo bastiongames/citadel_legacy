@@ -12,18 +12,24 @@ void Citadel::Castle::Game::Setup(handle systemData) {
 }
 
 void Citadel::Castle::Game::Shutdown() {
+	// Wait for all GPU execution to complete before exiting.
 	this->device.Wait();
+	// Engine level shutdown...
+
+	// Game level shutdown...
 	this->OnShutdown();
 }
 
 void Citadel::Castle::Game::Update() {
+	// Engine level update...
+
+	// Game level update...
 	this->OnUpdate();
 }
 
 void Citadel::Castle::Game::Render() {
-	this->device.BeginFrame();
+	// Engine level rendering...
 
+	// Game level rendering...
 	this->OnRender();
-
-	this->device.FinishFrame();
 }

@@ -14,14 +14,12 @@ Citadel::Watchtower::VertexBuffer::VertexBuffer(VertexBuffer&& other) noexcept{
 }
 
 Citadel::Watchtower::VertexBuffer::~VertexBuffer() noexcept {
-	//delete this->impl;
 	this->impl = nullptr;
 }
 
 Citadel::Watchtower::VertexBuffer&
 Citadel::Watchtower::VertexBuffer::operator=(const VertexBuffer& other) {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 	}
 
@@ -31,7 +29,6 @@ Citadel::Watchtower::VertexBuffer::operator=(const VertexBuffer& other) {
 Citadel::Watchtower::VertexBuffer&
 Citadel::Watchtower::VertexBuffer::operator=(VertexBuffer&& other) noexcept {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 		other.impl = nullptr;
 	}

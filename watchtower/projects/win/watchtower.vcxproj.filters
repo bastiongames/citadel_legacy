@@ -28,6 +28,19 @@
       <Filter>DX12</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Texture.h" />
+    <ClInclude Include="..\..\Camera.h" />
+    <ClInclude Include="..\..\context\Context.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\context\Context2D.h">
+      <Filter>Context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DX12\Context.h">
+      <Filter>DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\context\Context3D.h">
+      <Filter>Context</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shader.cpp" />
@@ -42,10 +55,20 @@
       <Filter>DX12</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Texture.cpp" />
+    <ClCompile Include="..\..\Camera.cpp" />
+    <ClCompile Include="..\..\DX12\Context2D.cpp">
+      <Filter>DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dx12\Context3D.cpp">
+      <Filter>DX12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DX12">
       <UniqueIdentifier>{0581e0b1-42b7-45f3-8e8a-4800776cc5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Context">
+      <UniqueIdentifier>{bf04a44d-df02-4480-99b7-1a269050d76d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

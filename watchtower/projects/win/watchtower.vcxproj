@@ -19,7 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Camera.cpp" />
     <ClCompile Include="..\..\Device.cpp" />
+    <ClCompile Include="..\..\DX12\Context2D.cpp" />
+    <ClCompile Include="..\..\dx12\Context3D.cpp" />
     <ClCompile Include="..\..\dx12\Device.dx12.cpp" />
     <ClCompile Include="..\..\dx12\Shader.dx12.cpp" />
     <ClCompile Include="..\..\Pipeline.cpp" />
@@ -29,6 +32,11 @@
     <ClCompile Include="..\..\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Camera.h" />
+    <ClInclude Include="..\..\context\Context.h" />
+    <ClInclude Include="..\..\context\Context2D.h" />
+    <ClInclude Include="..\..\context\Context3D.h" />
+    <ClInclude Include="..\..\DX12\Context.h" />
     <ClInclude Include="..\..\dx12\d3dx12.h" />
     <ClInclude Include="..\..\Device.h" />
     <ClInclude Include="..\..\dx12\Device.h" />

@@ -1,7 +1,8 @@
-#include "castle/Game.h"
+#include "castle/game/Game.h"
 #include "watchtower/Shader.h"
 #include "watchtower/Texture.h"
 #include "watchtower/RenderTarget.h"
+#include "watchtower/context/Context2D.h"
 #include "keep/types.h"
 #include "keep/Chrono.h"
 
@@ -19,6 +20,7 @@ using Citadel::Keep::MakeSPtr;
 
 using Citadel::Keep::Timer;
 
+using Citadel::Watchtower::Context2D;
 using Citadel::Watchtower::VertexShader;
 using Citadel::Watchtower::PixelShader;
 using Citadel::Watchtower::Pipeline;
@@ -41,22 +43,14 @@ public:
 	void OnSetup() {
 		SetWindowTitle(L"Hello Triangle");
 
-		//vshader = Citadel::Watchtower::VertexShader("struct PSInput { float4 position: SV_POSITION; float4 color: COLOR; }; PSInput VSMain(float4 position: POSITION, float4 color: COLOR) { PSInput result; result.position = position; result.color = color; return result; }", "VSMain");
-		//pshader = Citadel::Watchtower::PixelShader( "struct PSInput { float4 position: SV_POSITION; float4 color: COLOR; }; float4 PSMain(PSInput input) : SV_TARGET { return input.color; }", "PSMain");
+		context = this->device.CreateContext2D();
+		target = this->device.CreateRenderTarget();
 
 		vshader = Citadel::Watchtower::VertexShader("struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; PSInput VSMain(float4 position: POSITION, float4 uv: TEXCOORD) { PSInput result; result.position = position; result.uv = uv; return result; }", "VSMain");
 		pshader = Citadel::Watchtower::PixelShader( "struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; Texture2D gTexture: register(t0); SamplerState gSampler: register(s0); float4 PSMain(PSInput input) : SV_TARGET { return gTexture.Sample(gSampler, input.uv); }", "PSMain");
-
 		pipeline = this->device.CreatePipeline(vshader, pshader);
 
-		renderTarget = this->device.CreateRenderTarget();
-
 		float aspectRatio = 1024.0f / 768.0f;
-		/*Vertex vertices[] = {
-			{{ 0.0f, 0.25f * aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f }},
-			{{ 0.25f, -0.25f * aspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f }},
-			{{ -0.25f, -0.25f * aspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f }}
-		};*/
 		Vertex vertices[] = {
 			{{ 0.0f, 0.25f * aspectRatio, 0.0f }, { 0.5f, 0.0f }},
 			{{ 0.25f, -0.25f * aspectRatio, 0.0f }, { 1.0f, 1.0f }},
@@ -81,13 +75,14 @@ public:
 	}
 
 	void OnRender() {
-		this->device
-			.RenderTo(renderTarget)
+		context
+			.Begin(target, frameIndex)
 			.UsingPipeline(pipeline)
-			.MapTexture(texture)
-			.DrawTriangleList(vbuffer);
-
-		this->device.Present(renderTarget);
+			.PaintWith(texture)
+			.DrawTriangleList(vbuffer)
+			.Finish(target, frameIndex);
+		device.Present(context);
+		frameIndex = device.FinishFrame();
 	}
 private:
 
@@ -107,34 +102,6 @@ private:
 			u32 j = y / cellHeight;
 
 			if (i % 2 == j % 2) {
-				pData[n] = pData[n + 1] = pData[n + 2] = 0x00;
-				pData[n + 3] = 0xFF;
-			}
-			else {
-				pData[n] = pData[n + 1] = pData[n + 2] = 0xFF;
-				pData[n + 3] = 0xFF;
-			}
-		}
-
-		return HandleFromSPtr<u8>(buf);
-	}
-
-	handle GenerateTextureData2(u32 width, u32 height, u32 pixelSize) {
-		const u32 rowPitch = width * pixelSize;
-		const u32 cellPitch = rowPitch >> 3;
-		const u32 cellHeight = width >> 3;
-		const u32 textureSize = rowPitch * height;
-
-		auto buf = std::shared_ptr<unsigned char>(new unsigned char[textureSize], std::default_delete<unsigned char[]>());
-		u8* pData = buf.get();
-
-		for (u32 n = 0; n < textureSize; n += pixelSize) {
-			u32 x = n % rowPitch;
-			u32 y = n / rowPitch;
-			u32 i = x / cellPitch;
-			u32 j = y / cellHeight;
-
-			if (i % 2 != j % 2) {
 				pData[n] = pData[n + 1] = pData[n + 2] = 0x00;
 				pData[n + 3] = 0xFF;
 			}
@@ -167,12 +134,14 @@ private:
 		}
 	}
 
+	u32 frameIndex = 0;
+	Context2D context;
+	RenderTarget target;
 
 	VertexShader vshader;
 	PixelShader pshader;
 	Pipeline pipeline;
 	VertexBuffer vbuffer;
-	RenderTarget renderTarget;
 	Texture texture;
 
 	u64 frameCount;

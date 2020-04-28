@@ -16,14 +16,12 @@ Citadel::Watchtower::RenderTarget::RenderTarget(RenderTarget&& other) noexcept {
 }
 
 Citadel::Watchtower::RenderTarget::~RenderTarget() noexcept {
-	//delete this->impl;
 	this->impl = nullptr;
 }
 
 Citadel::Watchtower::RenderTarget&
 Citadel::Watchtower::RenderTarget::operator=(const RenderTarget& other) {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 	}
 	return *this;
@@ -32,7 +30,6 @@ Citadel::Watchtower::RenderTarget::operator=(const RenderTarget& other) {
 Citadel::Watchtower::RenderTarget&
 Citadel::Watchtower::RenderTarget::operator=(RenderTarget&& other) noexcept {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 		other.impl = nullptr;
 	}

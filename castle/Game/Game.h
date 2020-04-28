@@ -3,6 +3,8 @@
 
 #include "watchtower/Device.h"
 #include "watchtower/Pipeline.h"
+#include "watchtower/context/Context.h"
+#include <optional>
 
 namespace Citadel::Castle {
 	class Game {

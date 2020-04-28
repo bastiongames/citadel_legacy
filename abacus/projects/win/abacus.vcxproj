@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Matrix\Matrix4x4.cpp" />
     <ClCompile Include="..\..\quaternion\DualQuaternion.cpp" />
     <ClCompile Include="..\..\quaternion\Quaternion.cpp" />
     <ClCompile Include="..\..\Vector\Vector2D.cpp" />
     <ClCompile Include="..\..\Vector\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Matrix\Matrix4x4.h" />
     <ClInclude Include="..\..\point\Point2D.h" />
     <ClInclude Include="..\..\Point\Point3D.h" />
     <ClInclude Include="..\..\quaternion\DualQuaternion.h" />

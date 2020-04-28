@@ -14,14 +14,12 @@ Citadel::Watchtower::Pipeline::Pipeline(Pipeline&& other) noexcept {
 }
 
 Citadel::Watchtower::Pipeline::~Pipeline() noexcept {
-	//delete this->impl;
 	this->impl = nullptr;
 }
 
 Citadel::Watchtower::Pipeline&
 Citadel::Watchtower::Pipeline::operator=(const Pipeline& other) {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 	}
 	return *this;
@@ -30,7 +28,6 @@ Citadel::Watchtower::Pipeline::operator=(const Pipeline& other) {
 Citadel::Watchtower::Pipeline&
 Citadel::Watchtower::Pipeline::operator=(Pipeline&& other) noexcept {
 	if (this != &other) {
-		//delete this->impl;
 		this->impl = other.impl;
 		other.impl = nullptr;
 	}

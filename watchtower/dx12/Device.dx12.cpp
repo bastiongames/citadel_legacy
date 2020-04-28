@@ -1,5 +1,7 @@
 #include "watchtower/dx12/Device.h"
 
+#include "watchtower/dx12/Context.h"
+
 #include "watchtower/dx12/Pipeline.h"
 #include "watchtower/dx12/VertexBuffer.h"
 #include "watchtower/dx12/Texture.h"
@@ -9,7 +11,7 @@
 #include "keep/Types.h"
 
 using Citadel::Watchtower::DX12::DeviceData;
-//using Citadel::Watchtower::DX12::FrameData;
+using Citadel::Watchtower::DX12::ContextData;
 using Citadel::Watchtower::DX12::PipelineData;
 using Citadel::Watchtower::DX12::VertexBufferData;
 using Citadel::Watchtower::DX12::ShaderData;
@@ -103,10 +105,6 @@ void CreateSwapChain(SPtr<DeviceData> data, HWND hwnd, int width, int height) {
 	swapChain.As(&data->swapChain);
 }
 
-void CreateFrames(SPtr<DeviceData> data) {
-	
-}
-
 handle
 Citadel::Watchtower::Device::AcquireDevice(handle platformData) {
 	auto deviceData = MakeSPtr<DeviceData>();
@@ -119,15 +117,11 @@ Citadel::Watchtower::Device::AcquireDevice(handle platformData) {
 	CreateDevice(deviceData);
 	CreateCommandQueue(deviceData);
 	CreateSwapChain(deviceData, hwnd, 1024, 768);
-	CreateFrames(deviceData);
 	CreateCommandList(deviceData);
 
 	deviceData->device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&deviceData->fence));
 	deviceData->fenceEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
 	deviceData->fenceValues[0] = deviceData->fenceValues[1] = 0;
-
-	
-//	deviceData->frames[deviceData->frameIndex].fenceValue++;
 
 	deviceData->commandList->Close();
 
@@ -144,6 +138,37 @@ Citadel::Watchtower::Device::ReleaseDevice() {
 	}
 }
 
+Citadel::Watchtower::Context2D
+Citadel::Watchtower::Device::CreateContext2D() {
+	auto deviceData = SPtrFromHandle<DeviceData>(impl);
+	auto contextData = MakeSPtr<ContextData>();
+
+	for (int i = 0; i < 2; ++i) {
+		deviceData->device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&contextData->allocators[i]));
+	}
+	deviceData->device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, contextData->allocators[0].Get(), nullptr, IID_PPV_ARGS(&contextData->commandList));
+
+	contextData->commandList->Close();
+
+	return Context2D(HandleFromSPtr<ContextData>(contextData));
+}
+
+Citadel::Watchtower::Context3D
+Citadel::Watchtower::Device::CreateContext3D() {
+	auto deviceData = SPtrFromHandle<DeviceData>(impl);
+	auto contextData = MakeSPtr<ContextData>();
+
+	for (int i = 0; i < 2; ++i) {
+		deviceData->device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&contextData->allocators[i]));
+	}
+	deviceData->device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, contextData->allocators[0].Get(), nullptr, IID_PPV_ARGS(&contextData->commandList));
+
+	contextData->commandList->Close();
+
+	return Context3D(HandleFromSPtr<ContextData>(contextData));
+}
+
+
 Citadel::Watchtower::Device&
 Citadel::Watchtower::Device::BeginFrame() {
 	auto deviceData = SPtrFromHandle<DeviceData>(impl);
@@ -158,8 +183,6 @@ Citadel::Watchtower::Device::CreatePipeline(VertexShader& vshader, PixelShader& 
 
 	auto vshaderData = SPtrFromHandle<ShaderData>(vshader.Get());
 	auto pshaderData = SPtrFromHandle<ShaderData>(pshader.Get());
-
-	//auto frame = deviceData->frames[deviceData->frameIndex];
 
 	D3D12_INPUT_ELEMENT_DESC inputElementDesc[]{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
@@ -221,29 +244,6 @@ Citadel::Watchtower::Device::CreatePipeline(VertexShader& vshader, PixelShader& 
 	return Pipeline(HandleFromSPtr<PipelineData>(pipelineData));
 }
 
-Citadel::Watchtower::Device&
-Citadel::Watchtower::Device::UsingPipeline(Pipeline& pipeline) {
-	auto deviceData = SPtrFromHandle<DeviceData>(impl);
-	auto pipelineData = SPtrFromHandle<PipelineData>(pipeline.Get());
-	
-	deviceData->commandList->SetPipelineState(pipelineData->pipelineState.Get());
-
-	deviceData->commandList->SetGraphicsRootSignature(pipelineData->signature.Get());
-
-	deviceData->commandList->RSSetViewports(1, &pipelineData->viewport);
-	deviceData->commandList->RSSetScissorRects(1, &pipelineData->scissorRect);
-
-	//deviceData->commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(currentFrame.target.Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
-
-	//CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(deviceData->descriptorHeap->GetCPUDescriptorHandleForHeapStart(), deviceData->frameIndex, deviceData->frameSize);
-
-	//const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
-	//deviceData->commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
-	//deviceData->commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
-
-	return *this;
-}
-
 Citadel::Watchtower::VertexBuffer
 Citadel::Watchtower::Device::CreateVertexBuffer(void* data, u32 size, u32 stride) {
 	auto deviceData = SPtrFromHandle<DeviceData>(impl);
@@ -274,18 +274,6 @@ Citadel::Watchtower::Device::CreateVertexBuffer(void* data, u32 size, u32 stride
 	vbufferData->view = view;
 
 	return VertexBuffer(HandleFromSPtr<VertexBufferData>(vbufferData));
-}
-
-Citadel::Watchtower::Device&
-Citadel::Watchtower::Device::DrawTriangleList(VertexBuffer& buffer) {
-	auto deviceData = SPtrFromHandle<DeviceData>(impl);
-	auto vbufferData = SPtrFromHandle<VertexBufferData>(buffer.Get());
-
-	deviceData->commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	deviceData->commandList->IASetVertexBuffers(0, 1, &vbufferData->view);
-	deviceData->commandList->DrawInstanced(3, 1, 0, 0); // need to get this from the buffer.
-
-	return *this;
 }
 
 Citadel::Watchtower::Texture
@@ -353,17 +341,6 @@ Citadel::Watchtower::Device::CreateTexture(handle data, u32 width, u32 height, u
 	return Texture(textureData);
 }
 
-Citadel::Watchtower::Device&
-Citadel::Watchtower::Device::MapTexture(Texture& texture) {
-	auto deviceData = SPtrFromHandle<DeviceData>(impl);
-	auto textureData = SPtrFromHandle<TextureData>(texture.Get());
-
-	ID3D12DescriptorHeap* heaps[] = { textureData->heap.Get() };
-	deviceData->commandList->SetDescriptorHeaps(_countof(heaps), heaps);
-	deviceData->commandList->SetGraphicsRootDescriptorTable(0, textureData->heap->GetGPUDescriptorHandleForHeapStart());
-	return *this;
-}
-
 Citadel::Watchtower::RenderTarget
 Citadel::Watchtower::Device::CreateRenderTarget() {
 	auto deviceData = SPtrFromHandle<DeviceData>(impl);
@@ -394,24 +371,6 @@ Citadel::Watchtower::Device::CreateRenderTarget() {
 	return RenderTarget(HandleFromSPtr<RenderTargetData>(targetData));
 }
 
-Citadel::Watchtower::Device&
-Citadel::Watchtower::Device::RenderTo(RenderTarget& target) {
-	auto deviceData = SPtrFromHandle<DeviceData>(impl);
-	auto targetData = SPtrFromHandle<RenderTargetData>(target.Get());
-
-	auto currentFrame = targetData->frames[deviceData->frameIndex];
-
-	deviceData->commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(currentFrame.target.Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(targetData->heap->GetCPUDescriptorHandleForHeapStart(), deviceData->frameIndex, targetData->size);
-
-	const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
-	deviceData->commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
-	deviceData->commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
-
-	return *this;
-}
-
 void
 Citadel::Watchtower::Device::Present(RenderTarget& target) {
 	auto deviceData = SPtrFromHandle<DeviceData>(impl);
@@ -427,10 +386,21 @@ Citadel::Watchtower::Device::Present(RenderTarget& target) {
 	deviceData->commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
 	
 	// swap chain present
-	deviceData->swapChain->Present(0, 0);
+	deviceData->swapChain->Present(1, 0);
 }
 
 void
+Citadel::Watchtower::Device::Present(Context& context) {
+	auto deviceData = SPtrFromHandle<DeviceData>(impl);
+	auto contextData = SPtrFromHandle<ContextData>(context.Get());
+
+	ID3D12CommandList* commandLists[] = { contextData->commandList.Get() };
+	deviceData->commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
+
+	deviceData->swapChain->Present(0, 0);
+}
+
+u32
 Citadel::Watchtower::Device::FinishFrame() {
 	auto deviceData = SPtrFromHandle<DeviceData>(impl);
 
@@ -439,12 +409,15 @@ Citadel::Watchtower::Device::FinishFrame() {
 
 	deviceData->frameIndex = deviceData->swapChain->GetCurrentBackBufferIndex();
 	
-	if (deviceData->fence->GetCompletedValue() < deviceData->fenceValues[deviceData->frameIndex]) {
-		deviceData->fence->SetEventOnCompletion(deviceData->fenceValues[deviceData->frameIndex], deviceData->fenceEvent);
+	const UINT64 completedValue = deviceData->fence->GetCompletedValue();
+	if (completedValue < deviceData->fenceValues[deviceData->frameIndex]) {
+		HRESULT hr = deviceData->fence->SetEventOnCompletion(deviceData->fenceValues[deviceData->frameIndex], deviceData->fenceEvent);
 		WaitForSingleObjectEx(deviceData->fenceEvent, INFINITE, FALSE);
 	}
 
 	deviceData->fenceValues[deviceData->frameIndex] = currentFenceValue + 1;
+
+	return deviceData->frameIndex;
 }
 
 void

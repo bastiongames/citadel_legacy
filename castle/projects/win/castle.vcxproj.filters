@@ -2,11 +2,28 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="..\..\Application.h" />
-    <ClInclude Include="..\..\Game.h" />
+    <ClInclude Include="..\..\Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Game2D.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Game3D.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Application.win.cpp" />
-    <ClCompile Include="..\..\Game.cpp" />
-    <ClCompile Include="..\..\Game.win.cpp" />
+    <ClCompile Include="..\..\Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Game.win.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{84155b44-79ca-4284-843f-a6935482768e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

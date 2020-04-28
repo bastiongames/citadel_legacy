@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Application.h" />
-    <ClInclude Include="..\..\Game.h" />
+    <ClInclude Include="..\..\Game\Game.h" />
+    <ClInclude Include="..\..\Game\Game2D.h" />
+    <ClInclude Include="..\..\Game\Game3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Application.win.cpp" />
-    <ClCompile Include="..\..\Game.cpp" />
-    <ClCompile Include="..\..\Game.win.cpp" />
+    <ClCompile Include="..\..\Game\Game.cpp" />
+    <ClCompile Include="..\..\Game\Game.win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\keep\projects\win\keep.vcxproj">

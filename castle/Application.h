@@ -1,7 +1,7 @@
 #ifndef __APPLICATION_H__
 #define __APPLICATION_H__
 
-#include "Game.h"
+#include "Game/Game.h"
 namespace Citadel::Castle {
 	class Application
 	{
