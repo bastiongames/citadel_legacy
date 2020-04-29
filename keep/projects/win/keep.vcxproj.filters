@@ -9,6 +9,8 @@
       <Filter>Middleware</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chrono.h" />
+    <ClInclude Include="..\..\collections\Vector.h" />
+    <ClInclude Include="..\..\middleware\MiddlewareEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Middleware">
