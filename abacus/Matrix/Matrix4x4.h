@@ -10,7 +10,7 @@ namespace Citadel::Abacus::Matrix {
 		Matrix4x4();
 		Matrix4x4(real m11, real m12, real m13, real m14, real m21, real m22, real m23, real m24, real m31, real m32, real m33, real m34, real m41, real m42, real m43, real m44);
 		Matrix4x4(const Matrix4x4& other);
-		Matrix4x4(Matrix4x4&& other);
+		Matrix4x4(Matrix4x4&& other) noexcept;
 
 		static Matrix4x4 MakeZero();
 		static Matrix4x4 MakeIdentity();

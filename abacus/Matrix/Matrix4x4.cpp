@@ -10,6 +10,11 @@ Matrix4x4::Matrix4x4(const Matrix4x4& other) {
 	memcpy(m, other.m, sizeof(real) * 16);
 }
 
+Matrix4x4::Matrix4x4(Matrix4x4&& other) noexcept {
+	memcpy(m, other.m, sizeof(real) * 16);
+}
+
+
 Matrix4x4::Matrix4x4(real m11, real m12, real m13, real m14, real m21, real m22, real m23, real m24, real m31, real m32, real m33, real m34, real m41, real m42, real m43, real m44) {
 	this->m11 = m11; this->m12 = m12; this->m13 = m13; this->m14 = m14;
 	this->m21 = m21; this->m22 = m22; this->m23 = m23; this->m24 = m24;
