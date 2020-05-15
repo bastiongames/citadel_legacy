@@ -41,6 +41,27 @@
     <ClInclude Include="..\..\context\Context3D.h">
       <Filter>Context</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\vlkn\DeviceData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\Shader.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\PipelineData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\RenderTargetData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\ContextData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\VertexBufferData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\vlkn\TextureData.h">
+      <Filter>VLKN</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shader.cpp" />
@@ -62,6 +83,12 @@
     <ClCompile Include="..\..\dx12\Context3D.cpp">
       <Filter>DX12</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\vlkn\Device.vlkn.cpp">
+      <Filter>VLKN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\vlkn\Context2D.vlkn.cpp">
+      <Filter>VLKN</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DX12">
@@ -69,6 +96,9 @@
     </Filter>
     <Filter Include="Context">
       <UniqueIdentifier>{bf04a44d-df02-4480-99b7-1a269050d76d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VLKN">
+      <UniqueIdentifier>{3d5487d5-e376-44bf-9352-98d2778cdb53}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

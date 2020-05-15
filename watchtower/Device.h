@@ -33,7 +33,9 @@ namespace Citadel::Watchtower {
 
 		Context2D CreateContext2D();
 		Context3D CreateContext3D();
-
+		
+		VertexShader CreateVertexShader(std::string src, std::string entrypoint = "", std::string model = "");
+		PixelShader CreatePixelShader(std::string src, std::string entrypoint = "", std::string model = "");
 
 		Device& BeginFrame();
 

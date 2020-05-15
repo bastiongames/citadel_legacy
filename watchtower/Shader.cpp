@@ -1,12 +1,12 @@
 #include "Shader.h"
 
-Citadel::Watchtower::Shader::Shader() {
-	impl = nullptr;
+Citadel::Watchtower::Shader::Shader(handle data) {
+	impl = data;
 }
 
-Citadel::Watchtower::Shader::Shader(std::string text, std::string entrypoint, std::string target) {
+/*Citadel::Watchtower::Shader::Shader(std::string text, std::string entrypoint, std::string target) {
 	impl = Compile(text, entrypoint, target);
-}
+}*/
 
 Citadel::Watchtower::Shader::Shader(const Shader& other) {
 	this->impl = other.impl;

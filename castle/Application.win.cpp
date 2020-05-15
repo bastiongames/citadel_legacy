@@ -37,7 +37,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
 int
 Citadel::Castle::Application::Run(Game* game) {
-	FreeConsole();
+	//FreeConsole();
 	HINSTANCE instance = GetModuleHandle(0);
 
 	WNDCLASSEX windowClass = { 0 };
@@ -49,8 +49,8 @@ Citadel::Castle::Application::Run(Game* game) {
 	windowClass.lpszClassName = L"CitadelClass";
 	RegisterClassEx(&windowClass);
 
-	RECT windowRect = { 0, 0, 1024, 768 };
-	AdjustWindowRect(&windowRect, WS_OVERLAPPED, FALSE);
+	RECT windowRect = { 0, 0, 1280, 720 };
+	AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 	HWND hwnd = CreateWindowEx(
 		0L,

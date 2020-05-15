@@ -9,8 +9,8 @@ using Citadel::Keep::handle;
 namespace Citadel::Watchtower {
 	class Shader {
 	public:
-		Shader();
-		Shader(std::string text, std::string entrypoint, std::string target);
+		Shader(handle data = nullptr);
+		//Shader(std::string text, std::string entrypoint, std::string target);
 		Shader(const Shader& other);
 		Shader(Shader&& other) noexcept;
 		~Shader() noexcept;
@@ -21,21 +21,33 @@ namespace Citadel::Watchtower {
 		handle Get();
 
 	private:
-		handle Compile(std::string text, std::string entrypoint, std::string target);
+		//handle Compile(std::string text, std::string entrypoint, std::string target);
 
 		handle impl;
 	};
 
 	class VertexShader : public Shader {
 	public:
-		VertexShader() : Shader() { }
-		VertexShader(std::string text, std::string entrypoint): Shader(text, entrypoint, "vs_5_0") { }
+		VertexShader(handle data = nullptr) : Shader(data) { }
+
+		VertexShader(const VertexShader& other) = default;
+		VertexShader(VertexShader&& other) noexcept = default;
+		~VertexShader() noexcept = default;
+
+		VertexShader& operator=(const VertexShader& other) = default;
+		VertexShader& operator=(VertexShader&& other) noexcept = default;
 	};
 
 	class PixelShader : public Shader {
 	public:
-		PixelShader(): Shader() { }
-		PixelShader(std::string text, std::string entrypoint) : Shader(text, entrypoint, "ps_5_0") { }
+		PixelShader(handle data = nullptr) : Shader(data) { }
+
+		PixelShader(const PixelShader& other) = default;
+		PixelShader(PixelShader && other) noexcept = default;
+		~PixelShader() noexcept = default;
+
+		PixelShader& operator=(const PixelShader& other) = default;
+		PixelShader& operator=(PixelShader && other) noexcept = default;
 	};
 }
 

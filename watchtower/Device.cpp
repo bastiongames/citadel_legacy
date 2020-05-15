@@ -18,6 +18,8 @@ Citadel::Watchtower::Device::Device(Device&& other) noexcept {
 }
 
 Citadel::Watchtower::Device::~Device() {
+	ReleaseDevice();
+	
 	this->impl = nullptr;
 }
 

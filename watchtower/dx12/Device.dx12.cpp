@@ -38,6 +38,8 @@ using Citadel::Keep::HandleFromSPtr;
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+#include <d3dcompiler.h>
+
 // Device specific helper functions
 
 /*
@@ -168,6 +170,23 @@ Citadel::Watchtower::Device::CreateContext3D() {
 	return Context3D(HandleFromSPtr<ContextData>(contextData));
 }
 
+VertexShader
+Citadel::Watchtower::Device::CreateVertexShader(std::string src, std::string entrypoint, std::string model) {
+	auto shaderData = MakeSPtr<ShaderData>();
+	ComPtr<ID3DBlob> errors;
+	HRESULT hr = D3DCompile(src.c_str(), src.size(), nullptr, nullptr, nullptr, 
+		entrypoint.c_str(), model.c_str(), 0, 0, &shaderData->bytecode, &errors);
+	return VertexShader(HandleFromSPtr<ShaderData>(shaderData));
+}
+
+PixelShader
+Citadel::Watchtower::Device::CreatePixelShader(std::string src, std::string entrypoint, std::string model) {
+	auto shaderData = MakeSPtr<ShaderData>();
+	ComPtr<ID3DBlob> errors;
+	HRESULT hr = D3DCompile(src.c_str(), src.size(), nullptr, nullptr, nullptr,
+		entrypoint.c_str(), model.c_str(), 0, 0, &shaderData->bytecode, &errors);
+	return PixelShader(HandleFromSPtr<ShaderData>(shaderData));
+}
 
 Citadel::Watchtower::Device&
 Citadel::Watchtower::Device::BeginFrame() {
@@ -187,6 +206,9 @@ Citadel::Watchtower::Device::CreatePipeline(VertexShader& vshader, PixelShader& 
 	D3D12_INPUT_ELEMENT_DESC inputElementDesc[]{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
 		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
+
+		//{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0},
+		//{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0}
 	};
 
 	pipelineData->viewport = CD3DX12_VIEWPORT(0.0f, 0.0f, 1024.0f, 768.0f);

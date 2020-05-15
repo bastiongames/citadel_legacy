@@ -12,7 +12,7 @@ using Citadel::Abacus::Vector::Vector2D;
 using Citadel::Keep::u8;
 using Citadel::Keep::u32;
 using Citadel::Keep::real3;
-using Citadel::Keep::rgba;
+using Citadel::Keep::rgb;
 using Citadel::Keep::uv;
 using Citadel::Keep::real;
 using Citadel::Keep::HandleFromSPtr;
@@ -32,9 +32,16 @@ using Citadel::Watchtower::RenderTarget;
 #include <iomanip>
 #include <vector>
 
+//struct Vertex {
+//	Vertex(real3 pos, uv tex) : pos{ pos }, tex{ tex } { }
+//	real3 pos;
+//	uv tex;
+//};
+
 struct Vertex {
-	Vertex(real3 pos, uv tex) : pos{ pos }, tex{ tex } { }
-	real3 pos;
+	Vertex(uv pos, rgb color, uv tex) : pos{ pos }, color{ color }, tex{ tex } { }
+	uv pos;
+	rgb color;
 	uv tex;
 };
 
@@ -45,16 +52,30 @@ public:
 
 		context = this->device.CreateContext2D();
 		target = this->device.CreateRenderTarget();
+		
+		//vshader = device.CreateVertexShader("struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; PSInput VSMain(float4 position: POSITION, float4 uv: TEXCOORD) { PSInput result; result.position = position; result.uv = uv; return result; }", "VSMain", "vs_5_0");
+		//pshader = device.CreatePixelShader( "struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; Texture2D gTexture: register(t0); SamplerState gSampler: register(s0); float4 PSMain(PSInput input) : SV_TARGET { return gTexture.Sample(gSampler, input.uv); }", "PSMain", "ps_5_0");
+		
+		//vshader = device.CreateVertexShader("struct PSInput { float4 position: SV_POSITION; float4 color: COLOR; }; PSInput VSMain(float2 position: POSITION, float3 rgb: COLOR) { PSInput result; result.position = float4(position,0,1); result.color = float4(rgb, 1); return result; }", "VSMain", "vs_5_0");
+		//pshader = device.CreatePixelShader("struct PSInput { float4 position: SV_POSITION; float4 color: COLOR; }; float4 PSMain(PSInput input) : SV_TARGET { return input.color; }", "PSMain", "ps_5_0");
 
-		vshader = Citadel::Watchtower::VertexShader("struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; PSInput VSMain(float4 position: POSITION, float4 uv: TEXCOORD) { PSInput result; result.position = position; result.uv = uv; return result; }", "VSMain");
-		pshader = Citadel::Watchtower::PixelShader( "struct PSInput { float4 position: SV_POSITION; float2 uv:TEXCOORD; }; Texture2D gTexture: register(t0); SamplerState gSampler: register(s0); float4 PSMain(PSInput input) : SV_TARGET { return gTexture.Sample(gSampler, input.uv); }", "PSMain");
+		vshader = device.CreateVertexShader("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");
+		pshader = device.CreatePixelShader("AwIjBwAAAQAIAA0AEwAAAAAAAAARAAIAAQAAAAsABgABAAAAR0xTTC5zdGQuNDUwAAAAAA4AAwAAAAAAAQAAAA8ABwAEAAAABAAAAG1haW4AAAAACQAAAAwAAAAQAAMABAAAAAcAAAADAAMAAgAAAMIBAAAEAAkAR0xfQVJCX3NlcGFyYXRlX3NoYWRlcl9vYmplY3RzAAAEAAoAR0xfR09PR0xFX2NwcF9zdHlsZV9saW5lX2RpcmVjdGl2ZQAABAAIAEdMX0dPT0dMRV9pbmNsdWRlX2RpcmVjdGl2ZQAFAAQABAAAAG1haW4AAAAABQAFAAkAAABvdXRDb2xvcgAAAAAFAAUADAAAAGZyYWdDb2xvcgAAAEcABAAJAAAAHgAAAAAAAABHAAQADAAAAB4AAAAAAAAAEwACAAIAAAAhAAMAAwAAAAIAAAAWAAMABgAAACAAAAAXAAQABwAAAAYAAAAEAAAAIAAEAAgAAAADAAAABwAAADsABAAIAAAACQAAAAMAAAAXAAQACgAAAAYAAAADAAAAIAAEAAsAAAABAAAACgAAADsABAALAAAADAAAAAEAAAArAAQABgAAAA4AAAAAAIA/NgAFAAIAAAAEAAAAAAAAAAMAAAD4AAIABQAAAD0ABAAKAAAADQAAAAwAAABRAAUABgAAAA8AAAANAAAAAAAAAFEABQAGAAAAEAAAAA0AAAABAAAAUQAFAAYAAAARAAAADQAAAAIAAABQAAcABwAAABIAAAAPAAAAEAAAABEAAAAOAAAAPgADAAkAAAASAAAA/QABADgAAQA=");
+	
 		pipeline = this->device.CreatePipeline(vshader, pshader);
 
-		float aspectRatio = 1024.0f / 768.0f;
-		Vertex vertices[] = {
+		float aspectRatio = 1280.0f / 720.0f;
+		/*Vertex vertices[] = {
 			{{ 0.0f, 0.25f * aspectRatio, 0.0f }, { 0.5f, 0.0f }},
 			{{ 0.25f, -0.25f * aspectRatio, 0.0f }, { 1.0f, 1.0f }},
 			{{ -0.25f, -0.25f * aspectRatio, 0.0f }, { 0.0f, 1.0f }}
+		}*/;
+		
+		Vertex vertices[] = {
+			{{0.5f, -0.5f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
+			{{0.0f, 0.5f}, {1.0f, 1.0f, 1.0f}, {0.5f, 0.0f}},
+			
+			{{-0.5f, -0.5f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}}
 		};
 		
 		// Using the vertex information, create a vertex buffer.

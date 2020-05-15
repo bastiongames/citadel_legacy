@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\junkme.cpp" />
+    <ClCompile Include="..\..\base64.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Types.h" />
@@ -11,6 +12,7 @@
     <ClInclude Include="..\..\Chrono.h" />
     <ClInclude Include="..\..\collections\Vector.h" />
     <ClInclude Include="..\..\middleware\MiddlewareEngine.h" />
+    <ClInclude Include="..\..\base64.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Middleware">
