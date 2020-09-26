@@ -1,0 +1,184 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{118216AD-A317-4014-9C1C-6F72D5E74BD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{01FB05AB-5B09-4F00-9376-4E49A780A1EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sandbox", "Sandbox", "{1E2807A9-B69E-44EF-A270-361080C6260A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB1404CF-848D-4C17-9B9B-D9CB07C4F684}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Watchtower", "Watchtower", "{FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "watchtower", "modules\watchtower\watchtower.vcxproj", "{B9291F01-ED2A-4197-9699-A2E3DB410348}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "watchtower.mtl", "modules\watchtower.mtl\watchtower.mtl.vcxproj", "{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B9291F01-ED2A-4197-9699-A2E3DB410348} = {B9291F01-ED2A-4197-9699-A2E3DB410348}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "watchtower.vlkn", "modules\watchtower.vlkn\watchtower.vlkn.vcxproj", "{E8FD3733-2F3F-4A03-97CB-51305E8DC856}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B9291F01-ED2A-4197-9699-A2E3DB410348} = {B9291F01-ED2A-4197-9699-A2E3DB410348}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Castle", "Castle", "{F32A98B6-7E22-4EBD-8C76-A19A55A5A669}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abacus", "Abacus", "{DF195035-731C-40C2-AAE2-1CD9EB2FF420}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ballista", "Ballista", "{B4F6354D-F52A-475C-B2ED-7FDB2DD7539E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keep", "Keep", "{EDC761B8-5B5C-4C2A-BCCC-A0916DBD1B38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sage", "Sage", "{41880212-903D-4842-8C23-FF748BC301EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "castle", "modules\castle\castle.vcxproj", "{C82EBD86-C3AB-4D82-A83D-100882675616}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "castle.win", "modules\castle.win\castle.win.vcxproj", "{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C82EBD86-C3AB-4D82-A83D-100882675616} = {C82EBD86-C3AB-4D82-A83D-100882675616}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abacus", "modules\abacus\abacus.vcxproj", "{1A4CCB35-1838-41C6-8452-9850C213183D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "keep", "modules\keep\keep.vcxproj", "{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Citadel", "Citadel", "{BE560D0C-A2A3-494E-B8D9-18119EB5BA04}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "citadel", "modules\citadel\citadel.vcxproj", "{714C20F1-62CF-47CC-80D5-086248F9E3E3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloTriangle", "..\sandbox\HelloTriangle\projects\win\HelloTriangle.vcxproj", "{A45B3A8E-813A-4997-871A-B315BD1DC109}"
+	ProjectSection(ProjectDependencies) = postProject
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3} = {714C20F1-62CF-47CC-80D5-086248F9E3E3}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "watchtower.dx12", "modules\watchtower.dx12\watchtower.dx12.vcxproj", "{B5019507-95FA-403D-90A2-494D23FF655D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloCube", "..\sandbox\HelloCube\projects\win\HelloCube.vcxproj", "{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|DirectX12 = Debug|DirectX12
+		Debug|Vulkan = Debug|Vulkan
+		Release|DirectX12 = Release|DirectX12
+		Release|Vulkan = Release|Vulkan
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Release|DirectX12.Build.0 = Release|DirectX12
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{B9291F01-ED2A-4197-9699-A2E3DB410348}.Release|Vulkan.Build.0 = Release|Vulkan
+		{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856}.Release|Vulkan.Build.0 = Release|Vulkan
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Release|DirectX12.Build.0 = Release|DirectX12
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{C82EBD86-C3AB-4D82-A83D-100882675616}.Release|Vulkan.Build.0 = Release|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|DirectX12.Build.0 = Release|DirectX12
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|Vulkan.Build.0 = Release|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|x64.ActiveCfg = Release|Vulkan
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2}.Release|x86.ActiveCfg = Release|Vulkan
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Release|DirectX12.Build.0 = Release|DirectX12
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{1A4CCB35-1838-41C6-8452-9850C213183D}.Release|Vulkan.Build.0 = Release|Vulkan
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Release|DirectX12.Build.0 = Release|DirectX12
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74}.Release|Vulkan.Build.0 = Release|Vulkan
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Release|DirectX12.Build.0 = Release|DirectX12
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3}.Release|Vulkan.Build.0 = Release|Vulkan
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Release|DirectX12.Build.0 = Release|DirectX12
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{A45B3A8E-813A-4997-871A-B315BD1DC109}.Release|Vulkan.Build.0 = Release|Vulkan
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Release|DirectX12.Build.0 = Release|DirectX12
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{B5019507-95FA-403D-90A2-494D23FF655D}.Release|Vulkan.Build.0 = Release|Vulkan
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Debug|DirectX12.ActiveCfg = Debug|DirectX12
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Debug|DirectX12.Build.0 = Debug|DirectX12
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Debug|Vulkan.ActiveCfg = Debug|Vulkan
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Debug|Vulkan.Build.0 = Debug|Vulkan
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Release|DirectX12.ActiveCfg = Release|DirectX12
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Release|DirectX12.Build.0 = Release|DirectX12
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Release|Vulkan.ActiveCfg = Release|Vulkan
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED}.Release|Vulkan.Build.0 = Release|Vulkan
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01FB05AB-5B09-4F00-9376-4E49A780A1EB} = {118216AD-A317-4014-9C1C-6F72D5E74BD6}
+		{FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{B9291F01-ED2A-4197-9699-A2E3DB410348} = {FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4}
+		{34A8BB2E-CFBD-4EAD-92CE-663EE38D8733} = {FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4}
+		{E8FD3733-2F3F-4A03-97CB-51305E8DC856} = {FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4}
+		{F32A98B6-7E22-4EBD-8C76-A19A55A5A669} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{DF195035-731C-40C2-AAE2-1CD9EB2FF420} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{B4F6354D-F52A-475C-B2ED-7FDB2DD7539E} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{EDC761B8-5B5C-4C2A-BCCC-A0916DBD1B38} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{41880212-903D-4842-8C23-FF748BC301EB} = {01FB05AB-5B09-4F00-9376-4E49A780A1EB}
+		{C82EBD86-C3AB-4D82-A83D-100882675616} = {F32A98B6-7E22-4EBD-8C76-A19A55A5A669}
+		{1107C2A8-F86C-4FC3-BD3A-19E8BBA8A2D2} = {F32A98B6-7E22-4EBD-8C76-A19A55A5A669}
+		{1A4CCB35-1838-41C6-8452-9850C213183D} = {DF195035-731C-40C2-AAE2-1CD9EB2FF420}
+		{AE7D8593-F6D1-4DF4-9F79-211989FEEB74} = {EDC761B8-5B5C-4C2A-BCCC-A0916DBD1B38}
+		{BE560D0C-A2A3-494E-B8D9-18119EB5BA04} = {118216AD-A317-4014-9C1C-6F72D5E74BD6}
+		{714C20F1-62CF-47CC-80D5-086248F9E3E3} = {BE560D0C-A2A3-494E-B8D9-18119EB5BA04}
+		{A45B3A8E-813A-4997-871A-B315BD1DC109} = {1E2807A9-B69E-44EF-A270-361080C6260A}
+		{B5019507-95FA-403D-90A2-494D23FF655D} = {FA5B72B9-FD14-4D9D-94D2-5D944A66B0D4}
+		{BFB35C9F-625F-4E29-BE6E-0CC638F5DEED} = {1E2807A9-B69E-44EF-A270-361080C6260A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F43A29F6-51BB-482F-8CB3-EEF09F333FB6}
+	EndGlobalSection
+EndGlobal

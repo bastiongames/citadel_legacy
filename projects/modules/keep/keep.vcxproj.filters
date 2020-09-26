@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\keep\Types.h" />
+    <ClInclude Include="..\..\keep\Middleware\Middleware.h">
+      <Filter>Middleware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\keep\Middleware\MiddlewareEngine.h">
+      <Filter>Middleware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\keep\Encoding\Base64.h">
+      <Filter>Encoding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\keep\StringContainer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Middleware">
+      <UniqueIdentifier>{fb8869f3-c258-441f-943f-9a3dfe92d6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encoding">
+      <UniqueIdentifier>{048984f8-c5de-4760-93e6-dae51ad8878b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\keep\Encoding\Base64.cpp">
+      <Filter>Encoding</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

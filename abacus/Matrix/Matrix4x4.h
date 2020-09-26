@@ -12,6 +12,9 @@ namespace Citadel::Abacus::Matrix {
 		Matrix4x4(const Matrix4x4& other);
 		Matrix4x4(Matrix4x4&& other) noexcept;
 
+		void operator=(const Matrix4x4& other);
+		Matrix4x4 operator*(const Matrix4x4& other);
+
 		static Matrix4x4 MakeZero();
 		static Matrix4x4 MakeIdentity();
 		static Matrix4x4 MakeDiagonal(real m00, real m11, real m22, real m33 = 1);

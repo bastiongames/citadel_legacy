@@ -48,8 +48,20 @@ namespace Citadel::Keep {
 		return std::reinterpret_pointer_cast<void, T>(ptr);
 	}
 
+	template<class T1, class T2>
+	SPtr<T2> CastSPtr(SPtr<T1> ptr) {
+		return std::dynamic_pointer_cast<T2, T1>(ptr);
+	}
+
+	struct real2 {
+		real2(real x, real y) :x{ x }, y{ y } { }
+		real x;
+		real y;
+	};
+
 	struct real3 {
 		real3(real x, real y, real z) :x{ x }, y{ y }, z{ z } { }
+		real3(real2 xy, real z) : x{ xy.x }, y{ xy.y }, z{ z } { }
 		real x;
 		real y;
 		real z;
@@ -77,6 +89,22 @@ namespace Citadel::Keep {
 
 		real u;
 		real v;
+	};
+
+	struct Rect {
+		Rect(real x, real y, real w, real h) : x{ x }, y{ y }, w{ w }, h{ h } { }
+
+		real x;
+		real y;
+		real w;
+		real h;
+	};
+
+	struct Frustum : Rect {
+		Frustum(real x, real y, real w, real h, real n, real f) : Rect(x, y, w, h), n{ n }, f{ f } { }
+
+		real n;
+		real f;
 	};
 }
 #endif

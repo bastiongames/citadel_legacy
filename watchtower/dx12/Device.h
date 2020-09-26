@@ -1,32 +1,43 @@
 #ifndef __DX12__DEVICE_H__
 #define __DX12__DEVICE_H__
 
-#include <wrl/client.h>
-using Microsoft::WRL::ComPtr;
+#include "watchtower/Device.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
-#include "d3dX12.h"
-#include "../Device.h"
+#include <wrl/client.h>
+using Microsoft::WRL::ComPtr;
 
 namespace Citadel::Watchtower::DX12 {
-	struct DeviceData {
+	class Device : public Citadel::Watchtower::Device {
+	public:
+		Device(HWND hwnd);
+
+		virtual PSwapchain CreateSwapchain(const SwapchainDescriptor& descriptor);
+		virtual PCommandQueue CreateCommandQueue(const CommandQueueDescriptor& descriptor);
+		virtual PCommandBuffer CreateCommandBuffer(const CommandBufferDescriptor& descriptor);
+		virtual PRenderPass CreateRenderPass(const PRenderTarget renderTarget);
+		virtual Buffers::PBuffer CreateBuffer(const Buffers::BufferDescriptor& descriptor, void* data);
+		virtual Shaders::PShader CreateShader(const Shaders::ShaderDescriptor& descriptor);
+		virtual Shaders::PShaderProgram CreateShaderProgram(const Shaders::ShaderProgramDescriptor& descriptor);
+		virtual Pipelines::PPipelineLayout CreatePipelineLayout(const Pipelines::PipelineLayoutDescriptor& descriptor);
+		virtual Pipelines::PGraphicsPipeline CreateGraphicsPipeline(const Pipelines::GraphicsPipelineDescriptor& descriptor);
+		virtual Textures::PTexture CreateTexture(const Textures::TextureDescriptor& descriptor);
+		virtual PResourceHeap CreateResourceHeap(const ResourceHeapDescriptor& descriptor);
+
+	private:
 		ComPtr<IDXGIFactory2> factory;
 		ComPtr<ID3D12Device> device;
-
-
 		ComPtr<ID3D12CommandQueue> commandQueue;
-		ComPtr<IDXGISwapChain3> swapChain;
 		
-		// This command list/allocator pair is only used internally to pre-create resources
-		ComPtr<ID3D12GraphicsCommandList> commandList;
 		ComPtr<ID3D12CommandAllocator> allocator;
+		ComPtr<ID3D12GraphicsCommandList> commandList;
 
-		UINT frameIndex;
-		
+		Keep::u32 fenceValue;
 		ComPtr<ID3D12Fence> fence;
-		UINT64 fenceValues[2];
 		HANDLE fenceEvent;
+
+		HWND hwnd;
 	};
 }
 

@@ -1,35 +1,39 @@
 #include "Game.h"
+#include "watchtower/Common/context/RenderContext.h"
 
-void Citadel::Castle::Game::Setup(handle systemData) {
+using Citadel::Keep::MakeSPtr;
+using Citadel::Castle::Game;
+
+//#include "watchtower/vlkn/Device.h"
+
+#include <windows.h>
+
+void Game::Setup(handle systemData) {
 	//Engine level setup...
-	this->device = Citadel::Watchtower::Device(systemData);
 	this->impl = systemData;
-
-	this->device.Wait();
+	//this->renderer = MakeSPtr<Renderer>(systemData);
+	HWND hwnd = *(Citadel::Keep::SPtrFromHandle<HWND>(systemData).get());
+	this->device = Device::CreateDevice(hwnd);
 
 	//Game level setup...	
 	this->OnSetup();
 }
 
-void Citadel::Castle::Game::Shutdown() {
-	// Wait for all GPU execution to complete before exiting.
-	this->device.Wait();
+void Game::Shutdown() {
 	// Engine level shutdown...
 
 	// Game level shutdown...
 	this->OnShutdown();
 }
 
-void Citadel::Castle::Game::Update() {
-	// Engine level update...
-
-	// Game level update...
-	this->OnUpdate();
+void Game::Update() {
+	this->updatingMiddleware.Execute([this](UpdateContext updateContext) {
+		this->OnUpdate();
+	}, updateContext);
 }
 
-void Citadel::Castle::Game::Render() {
-	// Engine level rendering...
-
-	// Game level rendering...
-	this->OnRender();
+void Game::Render() {
+	this->renderingMiddleware.Execute([this](RenderContext renderContext) {
+		this->OnRender();
+	}, this->renderContext);
 }

@@ -10,41 +10,41 @@ using Citadel::Keep::SPtr;
 using Citadel::Keep::Middleware::Callback;
 using Citadel::Keep::Middleware::Delegate;
 using Citadel::Keep::Middleware::next_t;
+using Citadel::Keep::Middleware::Next;
 
-namespace Citadel::Keep::Middlware {
-	class IMiddleware {
-	public:
-		virtual Callback Method() = 0;
-	};
+namespace Citadel::Keep::Middleware {
 
-	using MiddlewareSet = std::vector<SPtr<IMiddleware>>;
+	template <class TContext>
+	using MiddlewareSet = std::vector<SPtr<IMiddleware<TContext>>>;
 
+	template <class TContext>
 	class MiddlewareEngine {
-		void RegisterMiddleware(SPtr<IMiddleware> m) {
+	public:
+		void RegisterMiddleware(SPtr<IMiddleware<TContext>> m) {
 			middleware.push_back(m);
 		}
 
-		void Execute(Delegate<void()> method) {
-			auto iterator = MakeSPtr<MiddlewareSet::iterator>(middleware.begin());
+		void Execute(Delegate<void(TContext)> method, TContext context) {
+			auto iterator = MakeSPtr<MiddlewareSet<TContext>::iterator>(middleware.begin());
 			auto next = MakeSPtr<next_t>();
 			auto weakNext = std::weak_ptr<next_t>(next);
 
-			*next = [this, method, iterator, weakNext] {
+			*next = [this, method, iterator, weakNext, context] {
 				auto& it = *iterator;
 				if (it != middleware.end()) {
-					auto func = (*it)->Method();
+					auto current = (*it);
 					++it;
-					auto nxt = weakNext.lock();
-					func(nxt);
+					auto next = weakNext.lock();
+					current->Execute(next, context);
 				}
 				else {
-					method();
+					method(context);
 				}
 			};
 			(*next)();
 		}
 	private:
-		MiddlewareSet middleware;
+		MiddlewareSet<TContext> middleware;
 	};
 }
 #endif

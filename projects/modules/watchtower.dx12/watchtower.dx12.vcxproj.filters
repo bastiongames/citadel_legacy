@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\watchtower\dx12\Device.h" />
+    <ClInclude Include="..\..\watchtower\dx12\Swapchain.h" />
+    <ClInclude Include="..\..\watchtower\dx12\CommandBuffer.h" />
+    <ClInclude Include="..\..\watchtower\dx12\CommandQueue.h" />
+    <ClInclude Include="..\..\watchtower\dx12\RenderPass.h" />
+    <ClInclude Include="..\..\watchtower\dx12\RenderTarget.h" />
+    <ClInclude Include="..\..\watchtower\dx12\Buffers\Buffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\dx12\Shaders\Shader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\dx12\Shaders\ShaderProgram.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\dx12\Pipelines\GraphicsPipeline.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\dx12\Command.h" />
+    <ClInclude Include="..\..\watchtower\dx12\ResourceHeap.h" />
+    <ClInclude Include="..\..\watchtower\dx12\Textures\Texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\dx12\Pipelines\PipelineLayout.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\watchtower\dx12\Device.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\Swapchain.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\CommandBuffer.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\CommandQueue.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\RenderPass.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\RenderTarget.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\Buffers\Buffer.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\dx12\Shaders\Shader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\dx12\Shaders\ShaderProgram.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\dx12\Pipelines\GraphicsPipeline.cpp">
+      <Filter>Pipelines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\dx12\ResourceHeap.cpp" />
+    <ClCompile Include="..\..\watchtower\dx12\Textures\Texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\dx12\Pipelines\PipelineLayout.cpp">
+      <Filter>Pipelines</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Buffers">
+      <UniqueIdentifier>{81a28248-fd4f-4d29-9c79-0e7dc166b7c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{46b831c3-d80a-4ed7-8d87-e5ae2be20a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pipelines">
+      <UniqueIdentifier>{2b2dd1e8-8976-4329-a330-407ea2d1e8f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{0116ea6e-03c2-4e60-a20c-d3d2840f8f2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

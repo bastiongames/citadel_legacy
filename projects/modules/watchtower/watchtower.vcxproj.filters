@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\watchtower\Device.h" />
+    <ClInclude Include="..\..\watchtower\Swapchain.h" />
+    <ClInclude Include="..\..\watchtower\SwapchainDescriptor.h" />
+    <ClInclude Include="..\..\watchtower\CommandQueue.h" />
+    <ClInclude Include="..\..\watchtower\CommandQueueDescriptor.h" />
+    <ClInclude Include="..\..\watchtower\CommandBuffer.h" />
+    <ClInclude Include="..\..\watchtower\CommandBufferDescriptor.h" />
+    <ClInclude Include="..\..\watchtower\RenderPass.h" />
+    <ClInclude Include="..\..\watchtower\RenderTarget.h" />
+    <ClInclude Include="..\..\watchtower\Buffers\Buffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Buffers\BufferDescriptor.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Buffers\VertexAttribute.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Buffers\VertexFormat.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\BindFlags.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\CPUAccessFlags.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\FormatFlags.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\MiscFlags.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Formats\BufferFormat.h">
+      <Filter>Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Formats\DataType.h">
+      <Filter>Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Formats\FormatAttributes.h">
+      <Filter>Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Formats\ImageFormat.h">
+      <Filter>Formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\Shader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\ShaderDescriptor.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\ShaderProgram.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\ShaderProgramDescriptor.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\ShaderType.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Shaders\VertexShaderAttributes.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Pipelines\GraphicsPipeline.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Pipelines\GraphicsPipelineDescriptor.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Textures\Texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Textures\TextureDescriptor.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\ResourceHeap.h" />
+    <ClInclude Include="..\..\watchtower\Pipelines\PipelineLayout.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\ResourceType.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Pipelines\PipelineLayoutDescriptor.h">
+      <Filter>Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\watchtower\Flags\StageFlags.h">
+      <Filter>Flags</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\watchtower\Flags\FlagOpperators.cpp">
+      <Filter>Flags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\Formats\FormatAttributes.cpp">
+      <Filter>Formats</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\Buffers\VertexAttribute.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\watchtower\Buffers\VertexFormat.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Buffers">
+      <UniqueIdentifier>{426b0e56-a5ea-4864-a491-2c802169e446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Flags">
+      <UniqueIdentifier>{4000fb9f-6491-48f9-b406-6f1cd9ca70be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Formats">
+      <UniqueIdentifier>{651fe17f-6049-4a9e-9955-b54419f71491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{eb9ec8fd-15b4-431c-af5a-14d3787e568c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pipelines">
+      <UniqueIdentifier>{5f606a4c-a70d-4167-888e-5f1fce20e15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{61ace2a9-2761-41d6-bb23-3a3c77cfec16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

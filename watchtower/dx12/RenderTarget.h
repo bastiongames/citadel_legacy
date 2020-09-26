@@ -1,24 +1,18 @@
-#ifndef __RENDERTARGET_DX12_H__
-#define __RENDERTARGET_DX12_H__
+#ifndef __DX12__RENDERTARGET_H__
+#define __DX12__RENDERTARGET_H__
 
+#include "watchtower/RenderTarget.h"
 #include <d3d12.h>
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
 
-#include "../RenderTarget.h"
+#include <vector>
 
 namespace Citadel::Watchtower::DX12 {
-	#define RENDER_TARGET_FRAME_COUNT 2
-
-	struct RenderTargetFrameData {
-		ComPtr<ID3D12CommandAllocator> allocator;
-		ComPtr<ID3D12Resource> target;
-	};
-
-	struct RenderTargetData {
-		ComPtr<ID3D12DescriptorHeap> heap;
-		UINT size;
-		RenderTargetFrameData frames[RENDER_TARGET_FRAME_COUNT];
+	class RenderTarget : public Watchtower::RenderTarget {
+	public:
+		virtual D3D12_CPU_DESCRIPTOR_HANDLE GetRenderTargetHandle() = 0;
+		virtual ComPtr<ID3D12Resource> GetBackBuffer() = 0;
 	};
 }
 

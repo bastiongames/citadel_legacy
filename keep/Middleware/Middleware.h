@@ -1,3 +1,6 @@
+#ifndef __MIDDLEWARE_H__
+#define __MIDDLEWARE_H__
+
 #include <functional>
 #include <memory>
 
@@ -12,6 +15,14 @@ namespace Citadel::Keep::Middleware {
 
 	template<class F, class I>
 	Callback BindCallback(F func, I inst) {
-		return std::bind(funcx, inst, std::placeholders::_1);
+		return std::bind(func, inst, std::placeholders::_1);
 	}
+
+	template <class TContext>
+	class IMiddleware {
+	public:
+		virtual void Execute(Next next, TContext context) = 0;
+	};
 }
+
+#endif
